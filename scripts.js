@@ -50,7 +50,6 @@ const cardsArray = [
 ]
 
 cardsArray.sort(() => 0.5 - Math.random())
-console.log(cardsArray);
 
 const gridDisplay = document.getElementById("grid")
 const resultDisplay = document.getElementById("result")
@@ -76,8 +75,6 @@ function flipCard() {
   cardSelectedIds.push(cardId)
   this.setAttribute("src", cardsArray[cardId].img)
 
-  console.log(cardSelected, cardSelectedIds);
-
   if (cardSelected.length == 2) {
     setTimeout(checkMatch, 200)
   }
@@ -92,16 +89,16 @@ function checkMatch() {
     cards[cardSelectedIds[0]].removeEventListener("click", flipCard)
     cards[cardSelectedIds[1]].removeEventListener("click", flipCard)
     cardsMatch.push(cardSelected)
-    console.log(cardsMatch);
-    if (cardsMatch.length == cardsArray.length / 2) {
-      alert('You win, Perfect !')
-    }
+
   }
   else {
     cards[cardSelectedIds[0]].setAttribute("src", "images/default.png")
     cards[cardSelectedIds[1]].setAttribute("src", "images/default.png")
   }
   resultDisplay.textContent = cardsMatch.length
+  if (cardsMatch.length == cardsArray.length / 2) {
+    resultDisplay.textContent = "You win, perfect !"
+  }
   cardSelected = []
   cardSelectedIds = []
   // if (cards[cardSelectedIds[0]] == cards[cardSelectedIds[1]]) {
